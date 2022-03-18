@@ -7,7 +7,6 @@ require('lualine').setup {
 	},
 }
 
-
 require('Comment').setup()
 
 require('gitsigns').setup {
@@ -65,7 +64,6 @@ require('nvim-treesitter.configs').setup {
 			enable = true,
 			lookahead = true,
 			keymaps = {
-
 				['af'] = '@function.outer',
 				['if'] = '@function.inner',
 				['ac'] = '@class.outer',
@@ -93,6 +91,29 @@ require('nvim-treesitter.configs').setup {
 			},
 		},
 	},
+	refactor = {
+		highlight_definitions = {
+			enable = true,
+			-- Set to false if you have an `updatetime` of ~100.
+			clear_on_cursor_move = true,
+		},
+		smart_rename = {
+			enable = true,
+			keymaps = {
+				smart_rename = "grr",
+			},
+		},
+		navigation = {
+			enable = true,
+			keymaps = {
+				goto_definition = "gnd",
+				list_definitions = "gnD",
+				list_definitions_toc = "gO",
+				goto_next_usage = "<a-*>",
+				goto_previous_usage = "<a-#>",
+			},
+		},
+	},
 }
 
 local lspconfig = require 'lspconfig'
@@ -114,10 +135,8 @@ local on_attach = function(_, bufnr)
 	vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
 
 local servers = {'clangd', 'rust_analyzer', 'pyright', 'tsserver'}
 for _, lsp in ipairs(servers) do
@@ -205,7 +224,7 @@ cmp.setup {
 }
 
 vim.api.nvim_exec([[
-	imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+	imap <silent><script><expr> <C-C> copilot#Accept("\<CR>")
 	let g:copilot_no_tab_map = v:true
 	let g:copilot_filetypes = {'*': v:true}
 ]], false)

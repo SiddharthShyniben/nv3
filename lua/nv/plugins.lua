@@ -32,8 +32,9 @@ require('packer').startup(function(use)
 	use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
 
 	use 'nvim-treesitter/nvim-treesitter'
-
+	use 'nvim-treesitter/nvim-treesitter-refactor'
 	use 'nvim-treesitter/nvim-treesitter-textobjects'
+
 	use 'neovim/nvim-lspconfig'
 	use 'hrsh7th/nvim-cmp'
 	use 'hrsh7th/cmp-nvim-lsp'
@@ -43,6 +44,10 @@ require('packer').startup(function(use)
 	use 'github/copilot.vim'
 	use {
 		'glacambre/firenvim',
-		run = function() vim.fn['firenvim#install'](0) end 
+		run = function() vim.fn['firenvim#install'](0) end
 	}
+
+	use 'vim-denops/denops.vim'
+	use "numToStr/FTerm.nvim"
+	use "llathasa-veleth/vim-brainfuck"
 end)
